@@ -15,7 +15,11 @@ namespace d_04.Model
         public static T[] Search<T>(this IEnumerable<T> list, string search)
         where T : ISearchable
         {
-            return list.Where(x => x.Title.Contains(search, StringComparison.OrdinalIgnoreCase)).ToArray();
+            IEnumerable<T> res =
+                from searchable in list
+                where searchable.Title.Contains(search, StringComparison.OrdinalIgnoreCase)
+                select searchable;
+            return res.ToArray();
         }
 
         public static T Best<T>(this IEnumerable<T> list)

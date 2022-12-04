@@ -9,7 +9,6 @@ IConfigurationBuilder builder =
     new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
 IConfigurationRoot root = builder.Build();
 
-Console.WriteLine($"{root["book_reviews_path"]} {root["movie_reviews_path"]}");
 string jsonString =
     File.ReadAllText(root["book_reviews_path"]);
 BookReviewsJson bookReviewsJson = JsonSerializer.Deserialize<BookReviewsJson>(jsonString);
